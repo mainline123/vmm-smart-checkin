@@ -3,321 +3,563 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ROK Kingston | VMM Smart Check-In</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ROK Kingston | Premium Guest Experience</title>
 
 <style>
-:root {
-  --teal: #123c43;
-  --dark: #10272b;
-  --gold: #b99a65;
-  --ivory: #f8f5ef;
+
+:root{
+ --navy:#052b4d;
+ --blue:#075b92;
+ --teal:#009caf;
+ --gold:#efbd38;
+ --cream:#fffaf0;
 }
 
-* { box-sizing: border-box; }
+*{box-sizing:border-box}
 
-html, body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--dark);
-  font-family: Arial, sans-serif;
-  color: var(--teal);
+html,body{
+ margin:0;
+ width:100%;
+ height:100%;
+ background:#031b30;
+ font-family:Arial,Helvetica,sans-serif;
+ color:var(--navy);
 }
 
-body {
-  display: grid;
-  place-items: center;
+body{
+ display:grid;
+ place-items:center;
 }
 
-#kiosk {
-  width: min(100vw,56.25vh);
-  height: min(100vh,177.778vw);
-  container-type: inline-size;
-  display: flex;
-  flex-direction: column;
-  background: var(--ivory);
-  overflow: hidden;
+#kiosk{
+ width:min(100vw,56.25vh);
+ height:min(100vh,177.778vw);
+ container-type:inline-size;
+ display:flex;
+ flex-direction:column;
+ overflow:hidden;
+ background:var(--cream);
+ position:relative;
 }
 
-header {
-  text-align: center;
-  padding: 3cqw;
-  background: var(--teal);
-  color: white;
-  border-bottom: 1cqw solid var(--gold);
+header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:4cqw;
+ background:linear-gradient(120deg,#ffffff,#d6effb);
+ border-bottom:1cqw solid var(--gold);
 }
 
-header strong {
-  font: 8cqw Georgia,serif;
-  letter-spacing: 1.5cqw;
+.brand{
+ font-size:14cqw;
+ font-weight:800;
+ line-height:.85;
+ letter-spacing:-.7cqw;
 }
 
-header small {
-  display: block;
-  font-size: 2.2cqw;
-  letter-spacing: .4cqw;
-  margin-top: 1cqw;
+.brand span{color:var(--teal)}
+
+.brand-sub{
+ font-size:2.8cqw;
+ letter-spacing:.45cqw;
+ font-weight:bold;
+ margin-top:2cqw;
 }
 
-main {
-  flex: 1;
-  min-height: 0;
-  overflow: auto;
+.collection{
+ font-size:2cqw;
+ letter-spacing:.2cqw;
+ margin-top:1cqw;
 }
 
-section {
-  padding: 3cqw;
+.destination{
+ font-size:2.8cqw;
+ line-height:1.4;
+ letter-spacing:.4cqw;
+ text-align:right;
 }
 
-#home {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2cqw;
+.flag{
+ width:10cqw;
+ height:6cqw;
+ margin-left:auto;
+ margin-top:2cqw;
 }
 
-.hero {
-  flex: 1;
-  min-height: 30cqw;
-  background:
-    linear-gradient(0deg,#10272be8,transparent 95%),
-    url('rok-hotel.jpg') center/cover;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  padding: 4cqw;
-  border-radius: 1.5cqw;
+main{
+ flex:1;
+ min-height:0;
+ overflow:auto;
+ background:
+ radial-gradient(ellipse at top right,#d9f0fc,transparent 65%),
+ var(--cream);
 }
 
-h1,h2,h3 {
-  font-family: Georgia,serif;
-  font-weight: normal;
-  margin: 2cqw 0;
+section{padding:3cqw}
+
+[hidden]{display:none!important}
+
+#home{
+ height:100%;
+ display:flex;
+ flex-direction:column;
+ gap:2cqw;
 }
 
-h1 { font-size: 7cqw; }
-h2 { font-size: 5.5cqw; }
-h3 { font-size: 4.5cqw; }
-
-p,label {
-  font-size: 3.6cqw;
-  line-height: 1.5;
+.hero{
+ flex:1;
+ min-height:39cqw;
+ position:relative;
+ overflow:hidden;
+ border-radius:2cqw;
+ background:
+ linear-gradient(0deg,rgba(3,27,48,.96),transparent 100%),
+ url('rok-hotel.jpg') center/cover;
+ color:white;
+ display:flex;
+ flex-direction:column;
+ justify-content:end;
+ padding:4cqw;
 }
 
-p { margin: 2cqw 0; }
-
-.eyebrow {
-  font-size: 2.4cqw;
-  letter-spacing: .5cqw;
-  text-transform: uppercase;
-  color: var(--gold);
+.hero-script{
+ font-family:Georgia,serif;
+ font-style:italic;
+ font-size:5cqw;
+ color:var(--gold);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2cqw;
+.hero h1{
+ font-size:10cqw;
+ line-height:.95;
+ margin:1cqw 0 2cqw;
 }
 
-button {
-  font: bold 3.6cqw Arial;
-  border: 0;
-  border-radius: 1cqw;
-  padding: 3cqw;
-  background: var(--teal);
-  color: white;
-  min-height: 10cqw;
-  cursor: pointer;
-  touch-action: manipulation;
+.goldline{
+ width:28cqw;
+ height:.8cqw;
+ background:var(--gold);
+ margin:1cqw 0 2cqw;
+ border-radius:1cqw;
 }
 
-button:active { opacity: .8; }
-
-.tile {
-  display: flex;
-  align-items: center;
-  gap: 2cqw;
-  min-height: 17cqw;
-  background: white;
-  color: var(--teal);
-  border: 1px solid #d8cbb5;
-  padding: 2cqw;
-  text-align: left;
+.hero p{
+ font-size:2.8cqw;
+ letter-spacing:.4cqw;
 }
 
-.tile svg {
-  width: 6cqw;
-  height: 6cqw;
-  flex-shrink: 0;
-  stroke: #94713e;
-  fill: none;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+h1,h2,h3{
+ font-family:Georgia,serif;
+ margin:2cqw 0;
 }
 
-.tile b {
-  display: block;
-  font: 3.8cqw Georgia,serif;
+h1{font-size:7.5cqw}
+h2{font-size:5.5cqw}
+h3{font-size:4.4cqw}
+
+p{
+ font-size:3.6cqw;
+ line-height:1.5;
+ margin:2cqw 0;
 }
 
-.tile small {
-  display: block;
-  color: #667b7c;
-  font-size: 2.3cqw;
-  margin-top: 1cqw;
+.eyebrow{
+ font-size:2.5cqw;
+ letter-spacing:.5cqw;
+ font-weight:bold;
+ text-transform:uppercase;
+ color:#007f99;
 }
 
-.hint {
-  text-align: center;
-  font-size: 2.2cqw;
-  letter-spacing: .4cqw;
+.grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:2cqw;
 }
 
-.panel {
-  background: white;
-  padding: 4cqw;
-  border-top: .8cqw solid var(--gold);
+button{
+ border:0;
+ cursor:pointer;
+ font: bold 3.5cqw Arial;
+ color:white;
+ background:linear-gradient(120deg,var(--blue),var(--navy));
+ border-radius:6cqw;
+ min-height:10cqw;
+ padding:3cqw;
+ touch-action:manipulation;
 }
 
-label {
-  display: block;
-  margin: 3cqw 0 1cqw;
+button:active{
+ transform:scale(.98);
+ filter:brightness(1.15);
 }
 
-input,select {
-  width: 100%;
-  font: 4cqw Arial;
-  padding: 3cqw;
-  border: 1px solid #a9b7b7;
-  border-radius: 1cqw;
-  color: var(--teal);
-  background: white;
+.tile{
+ border-radius:2cqw;
+ border:1px solid #ffffff88;
+ min-height:19cqw;
+ display:flex;
+ align-items:center;
+ text-align:left;
+ padding:2.5cqw;
+ gap:2cqw;
+ box-shadow:0 1cqw 2cqw #032c4825;
 }
 
-input[type=checkbox] {
-  width: 5cqw;
-  height: 5cqw;
-  vertical-align: middle;
+.tile b{
+ display:block;
+ font-size:3.6cqw;
 }
 
-.actions {
-  display: grid;
-  gap: 2cqw;
-  margin-top: 4cqw;
+.tile small{
+ display:block;
+ font-size:2.3cqw;
+ font-weight:normal;
+ margin-top:1cqw;
+ opacity:.95;
 }
 
-.secondary {
-  background: white;
-  color: var(--teal);
-  border: 1px solid var(--teal);
+.circle{
+ width:10cqw;
+ height:10cqw;
+ flex-shrink:0;
+ display:grid;
+ place-items:center;
+ border-radius:50%;
+ border:.5cqw solid var(--gold);
+ background:#ffffff20;
 }
 
-.notice {
-  background: #eee7da;
-  padding: 2.5cqw;
-  font-size: 3cqw;
+.circle svg{
+ width:6cqw;
+ height:6cqw;
+ stroke:white;
+ fill:none;
+ stroke-width:1.7;
+ stroke-linecap:round;
+ stroke-linejoin:round;
 }
 
-.error {
-  color: #a12626;
-  font-size: 3cqw;
+.gold{background:linear-gradient(135deg,#e4ad12,#916200)}
+.green{background:linear-gradient(135deg,#449e13,#135d36)}
+.purple{background:linear-gradient(135deg,#9224ac,#48116f)}
+.orange{background:linear-gradient(135deg,#ff681f,#b72e09)}
+.turquoise{background:linear-gradient(135deg,#00a9b9,#006277)}
+.blue{background:linear-gradient(135deg,#167fb8,#06365f)}
+
+.hint{
+ text-align:center;
+ font-size:2.3cqw;
+ letter-spacing:.5cqw;
+ font-weight:bold;
 }
 
-.photo {
-  width: 100%;
-  height: 42cqw;
-  object-fit: cover;
-  display: block;
-  border-radius: 1cqw;
+footer{
+ flex-shrink:0;
+ background:linear-gradient(120deg,#052b4d,#00658a);
+ color:white;
+ text-align:center;
+ padding:2cqw;
+ border-top:.6cqw solid var(--gold);
 }
 
-.feature {
-  background: white;
-  margin-bottom: 3cqw;
-  border: 1px solid #ded5c4;
-  overflow: hidden;
-  border-radius: 1cqw;
+footer .motto{
+ font:italic 4cqw Georgia;
+ color:#ffe4a0;
 }
 
-.feature .photo {
-  height: 30cqw;
-  border-radius: 0;
+footer small{
+ display:block;
+ font-size:1.9cqw;
+ margin-top:1cqw;
 }
 
-.feature-body {
-  padding: 3cqw;
+.home-button{
+ width:100%;
+ margin-top:2cqw;
+ border:.4cqw solid var(--gold);
+ background:#052b4d;
 }
 
-.feature button {
-  width: 100%;
-  margin-top: 2cqw;
+.panel{
+ background:white;
+ border-radius:2cqw;
+ padding:4cqw;
+ border-top:1cqw solid var(--gold);
+ box-shadow:0 1cqw 3cqw #032c4818;
 }
 
-.restaurant-hero {
-  width: 100%;
-  height: 65cqw;
-  object-fit: cover;
+.page-title{
+ text-align:center;
+ margin:2cqw 0 4cqw;
 }
 
-.restaurant-name {
-  font-size: 7cqw;
-  margin: 3cqw 0;
+.page-title:after{
+ content:"";
+ display:block;
+ height:.7cqw;
+ width:45%;
+ margin:2cqw auto;
+ background:var(--gold);
 }
 
-.tag {
-  display: inline-block;
-  background: #eee7da;
-  color: #806335;
-  padding: 1.5cqw 2.5cqw;
-  font-size: 2.7cqw;
-  margin: 1cqw 0;
+.photo{
+ width:100%;
+ height:44cqw;
+ object-fit:cover;
+ display:block;
+ border-radius:2cqw;
 }
 
-canvas {
-  width: 100%;
-  height: 32cqw;
-  background: white;
-  border: 1px solid #9daaaa;
-  touch-action: none;
+.feature{
+ display:grid;
+ grid-template-columns:44% 56%;
+ background:white;
+ border-radius:1.5cqw;
+ overflow:hidden;
+ margin-bottom:2.5cqw;
+ border:1px solid #b6d3e0;
+ box-shadow:0 1cqw 2cqw #032c4815;
 }
 
-.progress {
-  display: flex;
-  gap: 2cqw;
-  margin-bottom: 3cqw;
+.feature img{
+ width:100%;
+ height:100%;
+ min-height:31cqw;
+ object-fit:cover;
 }
 
-.progress i {
-  flex: 1;
-  height: 1cqw;
-  background: #ddd;
+.feature-body{
+ padding:3cqw;
 }
 
-.progress i.active {
-  background: var(--gold);
+.feature-body h2{
+ font-family:Arial;
+ font-size:4.2cqw;
+ text-transform:uppercase;
+ margin:0 0 1cqw;
 }
 
-footer {
-  background: var(--teal);
-  color: white;
-  text-align: center;
-  padding: 2cqw;
-  font-size: 2cqw;
+.feature-body p{
+ font-size:2.9cqw;
+ line-height:1.35;
 }
 
-footer small {
-  display: block;
-  color: #e5cfa8;
-  font-size: 1.8cqw;
-  margin-top: 1cqw;
+.feature-body button{
+ width:100%;
+ min-height:7cqw;
+ font-size:2.7cqw;
+ padding:2cqw;
 }
 
-[hidden] {
-  display: none !important;
+.actions{
+ display:grid;
+ gap:2cqw;
+ margin-top:4cqw;
 }
+
+.secondary{
+ background:white;
+ color:var(--navy);
+ border:1px solid var(--navy);
+}
+
+label{
+ display:block;
+ font-size:3.5cqw;
+ font-weight:bold;
+ margin:3cqw 0 1.5cqw;
+}
+
+input,select{
+ width:100%;
+ padding:3cqw;
+ min-height:10cqw;
+ font-size:4cqw;
+ border:1px solid #a7bdc9;
+ border-radius:1.5cqw;
+ background:#f9fcff;
+ color:var(--navy);
+}
+
+input[type=checkbox]{
+ width:5cqw;
+ min-height:5cqw;
+ vertical-align:middle;
+}
+
+.notice{
+ background:#fff4d4;
+ border-left:1cqw solid var(--gold);
+ padding:3cqw;
+ font-size:3cqw;
+ line-height:1.5;
+}
+
+.error{
+ color:#a12525;
+ font-size:3.2cqw;
+}
+
+.progress{
+ display:flex;
+ gap:1cqw;
+ margin-bottom:3cqw;
+}
+
+.progress i{
+ flex:1;
+ height:1cqw;
+ background:#dce7ee;
+ border-radius:1cqw;
+}
+
+.progress i.active{
+ background:var(--teal);
+}
+
+.scanner{
+ height:47cqw;
+ background:linear-gradient(145deg,#063958,#031a2b);
+ border-radius:2cqw;
+ position:relative;
+ display:grid;
+ place-items:center;
+ overflow:hidden;
+ margin:3cqw 0;
+}
+
+.idcard{
+ width:73%;
+ height:58%;
+ background:#e5f4fc;
+ border-radius:2cqw;
+ border:.5cqw solid white;
+ padding:3cqw;
+ display:flex;
+ align-items:center;
+ gap:3cqw;
+}
+
+.idportrait{
+ width:17cqw;
+ height:19cqw;
+ background:#b4cfdf;
+ display:grid;
+ place-items:center;
+ font-size:10cqw;
+}
+
+.idlines{
+ flex:1;
+ font-size:2.6cqw;
+ line-height:1.7;
+}
+
+.scanline{
+ position:absolute;
+ width:80%;
+ height:.6cqw;
+ background:#42ffb7;
+ box-shadow:0 0 3cqw #42ffb7;
+ top:15%;
+ animation:scan 2.5s infinite alternate;
+}
+
+@keyframes scan{
+ to{top:85%}
+}
+
+canvas{
+ width:100%;
+ height:35cqw;
+ background:white;
+ border:1px solid #a6bbc8;
+ border-radius:1cqw;
+ touch-action:none;
+}
+
+.key-choice{
+ padding:5cqw 3cqw;
+ background:linear-gradient(145deg,#075b92,#052b4d);
+ color:white;
+ border-radius:2cqw;
+ text-align:center;
+ margin:3cqw 0;
+ border:.5cqw solid var(--gold);
+}
+
+.key-choice h2{
+ color:white;
+ font-size:5.5cqw;
+}
+
+.key-symbol{
+ font-size:13cqw;
+}
+
+.key-choice button{
+ background:var(--gold);
+ color:var(--navy);
+ width:100%;
+}
+
+.successmark{
+ width:18cqw;
+ height:18cqw;
+ border-radius:50%;
+ display:grid;
+ place-items:center;
+ margin:3cqw auto;
+ background:#008a68;
+ color:white;
+ font-size:10cqw;
+}
+
+.center{text-align:center}
+
+.info-row{
+ padding:3cqw 0;
+ border-bottom:1px solid #d7e5ed;
+}
+
+.airport{
+ min-height:29cqw;
+ text-align:left;
+ padding:4cqw;
+ border-radius:2cqw;
+ border:.5cqw solid var(--gold);
+}
+
+.airport strong{
+ display:block;
+ font-size:9cqw;
+}
+
+.airport span{
+ display:block;
+ font-size:4cqw;
+}
+
+.airport small{
+ font-size:2.5cqw;
+ font-weight:normal;
+}
+
+.external{
+ display:block;
+ background:var(--navy);
+ color:white;
+ text-align:center;
+ text-decoration:none;
+ padding:3cqw;
+ border-radius:5cqw;
+ font-size:3.5cqw;
+ font-weight:bold;
+}
+
 </style>
 </head>
 
@@ -326,771 +568,941 @@ footer small {
 <div id="kiosk">
 
 <header>
-  <strong>ROK HOTEL</strong>
-  <small>KINGSTON · JAMAICA</small>
-  <small>TAPESTRY COLLECTION BY HILTON</small>
+
+ <div>
+  <div class="brand">R<span>O</span>K</div>
+  <div class="brand-sub">HOTEL KINGSTON</div>
+  <div class="collection">
+   TAPESTRY COLLECTION BY HILTON
+  </div>
+ </div>
+
+ <div class="destination">
+  STAY<br>DINE<br>EXPLORE<br>CONNECT
+
+  <svg class="flag" viewBox="0 0 60 36">
+   <rect width="60" height="36" fill="#009b3a"/>
+   <path d="M0 0L30 18L0 36ZM60 0L30 18L60 36Z"
+         fill="#000"/>
+   <path d="M0 0L60 36M60 0L0 36"
+         stroke="#fed100" stroke-width="7"/>
+  </svg>
+ </div>
+
 </header>
 
 <main id="content">
 
-<!-- WELCOME SCREEN -->
+<!-- MAIN MENU -->
 
 <section id="home">
 
-  <div class="hero">
-    <div class="eyebrow">Kingston Waterfront</div>
-    <h1>Welcome to ROK.</h1>
-    <p>Your arrival, simplified.</p>
-  </div>
+ <div class="hero">
+  <div class="hero-script">Modern Jamaica</div>
+  <h1>Welcome<br>to Kingston.</h1>
+  <div class="goldline"></div>
+  <p>STAY · DINE · EXPLORE · CONNECT</p>
+ </div>
 
-  <div class="grid" id="tiles"></div>
+ <div class="grid" id="tiles"></div>
 
-  <div class="hint">
-    TOUCH AN OPTION TO BEGIN
-  </div>
+ <div class="hint">TOUCH AN OPTION TO BEGIN</div>
 
 </section>
 
-<!-- CHECK-IN -->
+<!-- CHECK IN -->
 
 <section id="checkin" hidden>
 
-  <h1>Your Arrival</h1>
+ <div class="eyebrow">Your arrival, simplified</div>
+ <h1 class="page-title">Welcome to ROK</h1>
 
-  <div class="panel">
+ <img class="photo" src="rok-room.jpg"
+      alt="Hotel guest room">
 
-    <p class="notice">
-      Sample reservation: DEMO1001<br>
-      Last name: Smith
-    </p>
+ <div class="panel">
 
-    <form id="lookup">
+  <h2>Find Your Reservation</h2>
 
-      <label for="ref">Reservation Number</label>
-      <input id="ref" required autocomplete="off">
+  <p class="notice">
+   Demo reservation: DEMO1001<br>
+   Last name: Smith
+  </p>
 
-      <label for="surname">Last Name</label>
-      <input id="surname" required autocomplete="off">
+  <form id="lookup">
 
-      <p class="error" id="lookupError"></p>
+   <label for="ref">Reservation Number</label>
+   <input id="ref" required autocomplete="off">
 
-      <div class="actions">
+   <label for="surname">Last Name</label>
+   <input id="surname" required autocomplete="off">
 
-        <button>Find Reservation</button>
+   <p id="lookupError" class="error"></p>
 
-        <button type="button"
-                class="secondary"
-                onclick="reset()">
-          Return Home
-        </button>
+   <div class="actions">
+    <button>Find My Reservation</button>
+    <button type="button" class="secondary"
+            onclick="resetSession()">Cancel</button>
+   </div>
 
-      </div>
+  </form>
 
-    </form>
-
-  </div>
+ </div>
 
 </section>
 
-<!-- RESERVATION -->
+<!-- RESERVATION FOUND -->
 
 <section id="reservation" hidden>
 
-  <h1>Reservation Found</h1>
+ <h1 class="page-title">Reservation Found</h1>
 
-  <img class="photo"
-       src="rok-room.jpg"
-       alt="ROK guest room">
+ <img class="photo" src="rok-room.jpg"
+      alt="Hotel accommodation">
 
-  <div class="panel">
+ <div class="panel">
 
-    <h2>Welcome, Alex Smith</h2>
+  <div class="eyebrow">Your Kingston experience</div>
+  <h2>Welcome, Alex Smith</h2>
 
-    <p>Reservation: DEMO1001</p>
-    <p>Accommodation: Deluxe Room</p>
-    <p>Guests: 2 Adults</p>
-    <p>Length of Stay: 7 Nights</p>
-
-    <p class="notice">
-      Fictional demonstration reservation.
-      Room photograph is illustrative.
-    </p>
-
-    <div class="actions">
-
-      <button onclick="register(true)">
-        Continue Registration
-      </button>
-
-      <button class="secondary"
-              onclick="reset()">
-        Cancel
-      </button>
-
-    </div>
-
+  <div class="info-row">
+   <b>Reservation:</b> DEMO1001
   </div>
+
+  <div class="info-row">
+   <b>Accommodation:</b> Deluxe Room
+  </div>
+
+  <div class="info-row">
+   <b>Guests:</b> 2 Adults
+  </div>
+
+  <div class="info-row">
+   <b>Stay:</b> 7 Nights
+  </div>
+
+  <p class="notice">
+   Fictional demonstration reservation.
+   No live hotel connection.
+  </p>
+
+  <div class="actions">
+   <button onclick="show('scanID')">
+    Continue to ID Verification
+   </button>
+   <button class="secondary"
+           onclick="resetSession()">Cancel</button>
+  </div>
+
+ </div>
 
 </section>
 
-<!-- REGISTRATION -->
+<!-- SIMULATED ID SCANNER -->
+
+<section id="scanID" hidden>
+
+ <div class="eyebrow">Step 1 · Identity verification</div>
+ <h1 class="page-title">Scan Identification</h1>
+
+ <div class="panel">
+
+  <h2>Passport or Driver's Licence</h2>
+
+  <p>
+   Place your identification on the
+   compatible document scanner.
+  </p>
+
+  <div class="scanner">
+
+   <div class="idcard">
+
+    <div class="idportrait">♙</div>
+
+    <div class="idlines">
+     <b>SAMPLE DOCUMENT</b><br>
+     ALEX SMITH<br>
+     DEMONSTRATION ONLY<br>
+     XXXXXXXXX
+    </div>
+
+   </div>
+
+   <div class="scanline"></div>
+
+  </div>
+
+  <p class="notice">
+   Scanner simulation only.
+   Do not present real identification.
+  </p>
+
+  <div class="actions">
+
+   <button onclick="simulateScan()">
+    Simulate ID Scan
+   </button>
+
+   <button class="secondary"
+           onclick="startRegistration()">
+    Continue Manually
+   </button>
+
+   <button class="secondary"
+           onclick="resetSession()">Cancel</button>
+
+  </div>
+
+ </div>
+
+</section>
+
+<!-- ID VERIFIED -->
+
+<section id="idVerified" hidden>
+
+ <div class="panel center">
+
+  <div class="successmark">✓</div>
+
+  <h1>Sample ID Verified</h1>
+
+  <p>
+   The fictional guest details are
+   ready for registration.
+  </p>
+
+  <p class="notice">
+   No actual identification was scanned,
+   verified or stored.
+  </p>
+
+  <div class="actions">
+   <button onclick="startRegistration()">
+    Continue Registration
+   </button>
+   <button class="secondary"
+           onclick="resetSession()">Cancel</button>
+  </div>
+
+ </div>
+
+</section>
+
+<!-- GUEST REGISTRATION -->
 
 <section id="registration" hidden>
 
-  <h1>Guest Registration</h1>
+ <h1 class="page-title">Guest Registration</h1>
 
-  <div class="panel">
+ <div class="panel">
 
-    <div class="progress">
-      <i></i><i></i><i></i>
-    </div>
-
-    <form id="guest" novalidate>
-
-      <div id="step1">
-
-        <div class="eyebrow">Step 1 of 3</div>
-
-        <h2>Guest Details</h2>
-
-        <label for="guestName">Full Name</label>
-        <input id="guestName"
-               required
-               autocomplete="off">
-
-        <label for="country">Country of Residence</label>
-
-        <select id="country" required>
-          <option value="">Select Country</option>
-          <option>Canada</option>
-          <option>United States</option>
-          <option>United Kingdom</option>
-          <option>Jamaica</option>
-          <option>Other</option>
-        </select>
-
-        <label for="count">Number of Guests</label>
-
-        <select id="count">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5 or more</option>
-        </select>
-
-        <div class="actions">
-
-          <button type="button"
-                  onclick="nextDetails()">
-            Continue
-          </button>
-
-        </div>
-
-      </div>
-
-      <div id="step2" hidden>
-
-        <div class="eyebrow">Step 2 of 3</div>
-
-        <h2>Registration Agreement</h2>
-
-        <p>
-          I confirm that the sample information
-          provided is correct.
-        </p>
-
-        <p>
-          Final room assignment must be
-          confirmed at reception.
-        </p>
-
-        <p class="notice">
-          Sample agreement for demonstration only.
-        </p>
-
-        <label>
-          <input type="checkbox"
-                 id="agree"
-                 required>
-          I accept the sample registration agreement.
-        </label>
-
-        <div class="actions">
-
-          <button type="button"
-                  onclick="nextAgreement()">
-            Continue to Signature
-          </button>
-
-          <button type="button"
-                  class="secondary"
-                  onclick="step(1)">
-            Previous Step
-          </button>
-
-        </div>
-
-      </div>
-
-      <div id="step3" hidden>
-
-        <div class="eyebrow">Step 3 of 3</div>
-
-        <h2>Digital Signature</h2>
-
-        <p>
-          Draw a fictional signature using
-          your finger on the touchscreen.
-        </p>
-
-        <canvas id="sig"
-                width="900"
-                height="350">
-        </canvas>
-
-        <p class="error" id="sigError"></p>
-
-        <div class="actions">
-
-          <button type="button"
-                  class="secondary"
-                  onclick="clearSig()">
-            Clear Signature
-          </button>
-
-          <button type="submit">
-            Complete Registration
-          </button>
-
-          <button type="button"
-                  class="secondary"
-                  onclick="step(2)">
-            Previous Step
-          </button>
-
-        </div>
-
-      </div>
-
-      <div class="actions">
-
-        <button type="button"
-                class="secondary"
-                onclick="reset()">
-          Cancel
-        </button>
-
-      </div>
-
-    </form>
-
+  <div class="progress">
+   <i></i><i></i><i></i>
   </div>
 
-</section>
+  <form id="guest" novalidate>
 
-<!-- REGISTRATION SUCCESS -->
+   <div id="step1">
 
-<section id="success" hidden>
+    <div class="eyebrow">Guest details · 1 of 3</div>
+    <h2>Confirm Your Information</h2>
 
-  <img class="photo"
-       src="rok-pool.jpg"
-       alt="ROK swimming pool">
+    <label for="guestName">Full Name</label>
+    <input id="guestName" required autocomplete="off">
 
-  <div class="panel">
+    <label for="country">Country of Residence</label>
 
-    <div class="eyebrow">
-      Registration Complete
+    <select id="country" required>
+     <option value="">Select Country</option>
+     <option>Canada</option>
+     <option>United States</option>
+     <option>United Kingdom</option>
+     <option>Jamaica</option>
+     <option>Other</option>
+    </select>
+
+    <label for="count">Number of Guests</label>
+
+    <select id="count">
+     <option>1</option>
+     <option>2</option>
+     <option>3</option>
+     <option>4</option>
+     <option>5 or more</option>
+    </select>
+
+    <div class="actions">
+     <button type="button"
+             onclick="nextDetails()">Continue</button>
     </div>
 
-    <h1>Enjoy Your Stay.</h1>
+   </div>
+
+   <div id="step2" hidden>
+
+    <div class="eyebrow">Guest agreement · 2 of 3</div>
+    <h2>Registration Agreement</h2>
 
     <p>
-      Thank you for completing your
-      demonstration registration.
+     I confirm that the sample guest
+     information provided is correct.
     </p>
 
     <p>
-      Please proceed to reception
-      for room confirmation.
+     Final room assignment and access
+     must be authorized by reception.
     </p>
+
+    <p class="notice">
+     This is a fictional registration agreement.
+    </p>
+
+    <label>
+     <input type="checkbox" id="agree" required>
+     I accept the sample agreement.
+    </label>
 
     <div class="actions">
 
-      <button onclick="reset()">
-        Return to Welcome Screen
-      </button>
+     <button type="button"
+             onclick="nextAgreement()">
+      Continue to Signature
+     </button>
+
+     <button type="button" class="secondary"
+             onclick="step(1)">Previous Step</button>
 
     </div>
 
-  </div>
+   </div>
+
+   <div id="step3" hidden>
+
+    <div class="eyebrow">Digital signature · 3 of 3</div>
+    <h2>Sign Your Registration</h2>
+
+    <p>
+     Use your finger to draw a fictional
+     signature below.
+    </p>
+
+    <canvas id="sig" width="900" height="350"></canvas>
+
+    <p id="sigError" class="error"></p>
+
+    <div class="actions">
+
+     <button type="button" class="secondary"
+             onclick="clearSig()">Clear Signature</button>
+
+     <button type="submit">
+      Complete Registration
+     </button>
+
+     <button type="button" class="secondary"
+             onclick="step(2)">Previous Step</button>
+
+    </div>
+
+   </div>
+
+   <div class="actions">
+
+    <button type="button" class="secondary"
+            onclick="resetSession()">Cancel</button>
+
+   </div>
+
+  </form>
+
+ </div>
 
 </section>
 
-<!-- CHECK-OUT -->
+<!-- ROOM ACCESS -->
+
+<section id="roomAccess" hidden>
+
+ <img class="photo" src="rok-room.jpg"
+      alt="Hotel guest room">
+
+ <div class="center">
+
+  <div class="eyebrow">Registration complete</div>
+  <h1>Your Room Awaits.</h1>
+  <p>Choose your preferred room access method.</p>
+
+ </div>
+
+ <div class="key-choice">
+
+  <div class="key-symbol">▣</div>
+
+  <h2>Physical Key Card</h2>
+
+  <p>Receive an electronic hotel room card.</p>
+
+  <button onclick="show('physicalKey')">
+   Select Key Card
+  </button>
+
+ </div>
+
+ <div class="key-choice turquoise">
+
+  <div class="key-symbol">▯</div>
+
+  <h2>Mobile Digital Key</h2>
+
+  <p>Access your room using your smartphone.</p>
+
+  <button onclick="show('mobileKey')">
+   Select Mobile Key
+  </button>
+
+ </div>
+
+ <p class="notice">
+  Room access options are simulated.
+  No real room or key has been assigned.
+ </p>
+
+ <button class="home-button"
+         onclick="resetSession()">Return Home</button>
+
+</section>
+
+<!-- PHYSICAL KEY -->
+
+<section id="physicalKey" hidden>
+
+ <h1 class="page-title">Physical Room Key</h1>
+
+ <div class="panel center">
+
+  <div class="key-symbol">▣</div>
+
+  <h2>Encode Your Key Card</h2>
+
+  <p>
+   In the production system, an authorized
+   card encoder would prepare your room key.
+  </p>
+
+  <p class="notice">
+   No encoder is connected.
+   This demonstration cannot create a real key.
+  </p>
+
+  <div class="actions">
+
+   <button onclick="show('complete')">
+    Simulate Card Encoding
+   </button>
+
+   <button class="secondary"
+           onclick="show('roomAccess')">
+    Choose Another Method
+   </button>
+
+  </div>
+
+ </div>
+
+</section>
+
+<!-- MOBILE KEY -->
+
+<section id="mobileKey" hidden>
+
+ <h1 class="page-title">Mobile Digital Key</h1>
+
+ <div class="panel center">
+
+  <div class="key-symbol">▯</div>
+
+  <h2>Your Phone. Your Key.</h2>
+
+  <p>
+   In an authorized production system,
+   a secure QR code could transfer a
+   mobile key invitation to your smartphone.
+  </p>
+
+  <div style="
+   border:2px dashed #009caf;
+   padding:6cqw;
+   margin:4cqw 0;
+   border-radius:2cqw;
+   background:#e9f7fb">
+
+   <svg viewBox="0 0 100 100"
+        style="width:35cqw"
+        fill="none" stroke="#052b4d" stroke-width="5">
+
+    <path d="M5 30V5H30M70 5H95V30
+             M95 70V95H70M30 95H5V70"/>
+
+    <rect x="33" y="20" width="34"
+          height="60" rx="5"/>
+
+    <path d="M42 48L48 54L59 42"/>
+
+   </svg>
+
+   <h3>Secure QR Handoff</h3>
+
+   <p>Demonstration placeholder</p>
+
+  </div>
+
+  <p class="notice">
+   No live QR credential or digital key
+   is generated. Hotel authorization and
+   compatible door locks are required.
+  </p>
+
+  <div class="actions">
+
+   <button onclick="show('complete')">
+    Simulate Mobile Key Delivery
+   </button>
+
+   <button class="secondary"
+           onclick="show('roomAccess')">
+    Choose Another Method
+   </button>
+
+  </div>
+
+ </div>
+
+</section>
+
+<!-- CHECK IN COMPLETE -->
+
+<section id="complete" hidden>
+
+ <img class="photo" src="rok-pool.jpg"
+      alt="Hotel swimming pool">
+
+ <div class="panel center">
+
+  <div class="successmark">✓</div>
+
+  <div class="eyebrow">Demonstration complete</div>
+
+  <h1>Enjoy Your Stay.</h1>
+
+  <p>
+   Experience the spirit of Kingston.
+  </p>
+
+  <p>
+   Please visit reception for actual
+   room assignment and room access.
+  </p>
+
+  <div class="actions">
+
+   <button onclick="show('dining')">
+    Discover Dining
+   </button>
+
+   <button onclick="show('wellness')">
+    Explore Hotel Amenities
+   </button>
+
+   <button class="secondary"
+           onclick="resetSession()">Return Home</button>
+
+  </div>
+
+ </div>
+
+</section>
+
+<!-- CHECK OUT -->
 
 <section id="checkout" hidden>
 
-  <h1>Guest Check-Out</h1>
+ <h1 class="page-title">Guest Check-Out</h1>
 
-  <div class="panel">
+ <div class="panel">
 
-    <h2>Until We Meet Again.</h2>
+  <h2>Until We Meet Again.</h2>
 
-    <form id="out">
+  <form id="out">
 
-      <label for="room">Room Number</label>
-      <input id="room"
-             required
-             autocomplete="off">
+   <label for="room">Room Number</label>
+   <input id="room" required autocomplete="off">
 
-      <label for="outName">Last Name</label>
-      <input id="outName"
-             required
-             autocomplete="off">
+   <label for="outName">Last Name</label>
+   <input id="outName" required autocomplete="off">
 
-      <div class="actions">
+   <div class="actions">
 
-        <button>Request Check-Out</button>
+    <button>Complete Sample Check-Out</button>
 
-        <button type="button"
-                class="secondary"
-                onclick="reset()">
-          Cancel
-        </button>
+    <button type="button" class="secondary"
+            onclick="resetSession()">Cancel</button>
 
-      </div>
+   </div>
 
-    </form>
+  </form>
 
-  </div>
+ </div>
 
 </section>
 
 <section id="outDone" hidden>
 
+ <div class="panel center">
+
+  <div class="successmark">✓</div>
   <h1>Safe Travels.</h1>
 
-  <div class="panel">
+  <p>Thank you for visiting Kingston.</p>
 
-    <p>Thank you for visiting Kingston.</p>
+  <p class="notice">
+   Sample check-out complete.
+   No hotel records have been changed.
+  </p>
 
-    <p>
-      Your sample check-out is complete.
-      Please settle your account at reception.
-    </p>
+  <button class="home-button"
+          onclick="resetSession()">Return Home</button>
 
-    <p class="notice">
-      No actual check-out request has been transmitted.
-    </p>
-
-    <button onclick="reset()">Return Home</button>
-
-  </div>
+ </div>
 
 </section>
 
-<!-- DINING MAIN MENU -->
+<!-- DINING -->
 
 <section id="dining" hidden>
 
+ <div class="eyebrow center">Good food brings people together</div>
+ <h1 class="page-title">Dining Options</h1>
+
+ <div class="feature">
+
+  <img src="rok-palate.avif" alt="Palate restaurant">
+
+  <div class="feature-body">
+
+   <h2>Palate</h2>
+   <div class="eyebrow">Restaurant</div>
+
+   <p>
+    Global flavours with a distinctive
+    Jamaican influence.
+   </p>
+
+   <button onclick="restaurant('palate')">
+    Discover Palate ›
+   </button>
+
+  </div>
+
+ </div>
+
+ <div class="feature">
+
+  <img src="rok-cafe.avif" alt="ROK Cafe">
+
+  <div class="feature-body">
+
+   <h2>ROK Café &amp; Market</h2>
+
+   <p>
+    Coffee, fresh pastries,
+    light bites and refreshments.
+   </p>
+
+   <button onclick="restaurant('cafe')">
+    Discover Café ›
+   </button>
+
+  </div>
+
+ </div>
+
+ <div class="feature">
+
+  <img src="rok-dining.jpg" alt="ROKstone">
+
+  <div class="feature-body">
+
+   <h2>ROKstone</h2>
+   <div class="eyebrow">Pool Bar &amp; Grill</div>
+
+   <p>
+    Relax with casual dining and
+    refreshments by the pool.
+   </p>
+
+   <button onclick="restaurant('rokstone')">
+    Discover ROKstone ›
+   </button>
+
+  </div>
+
+ </div>
+
+ <img class="photo" src="rok-hotel.jpg"
+      alt="Kingston hotel at sunset">
+
+ <button class="home-button"
+         onclick="resetSession()">Return to Main Menu</button>
+
+</section>
+
+<!-- RESTAURANT DETAIL -->
+
+<section id="restaurantDetail" hidden>
+
+ <img id="restaurantPhoto" class="photo" alt="Restaurant">
+
+ <div class="panel">
+
   <div class="eyebrow">Taste Kingston</div>
+  <h1 id="restaurantTitle"></h1>
+  <p id="restaurantText"></p>
 
-  <h1>Dining & Drinks</h1>
+  <h3>Menus &amp; Opening Hours</h3>
 
-  <p>Discover the flavours of ROK Hotel.</p>
-
-  <div class="feature">
-
-    <img class="photo"
-         src="rok-palate.avif"
-         alt="Palate restaurant">
-
-    <div class="feature-body">
-
-      <h2>Palate</h2>
-
-      <p>International and Caribbean dining.</p>
-
-      <button onclick="show('palate')">
-        Discover Palate
-      </button>
-
-    </div>
-
-  </div>
-
-  <div class="feature">
-
-    <img class="photo"
-         src="rok-cafe.avif"
-         alt="ROK Cafe and Market">
-
-    <div class="feature-body">
-
-      <h2>ROK Café & Market</h2>
-
-      <p>Coffee, pastries and light refreshments.</p>
-
-      <button onclick="show('cafe')">
-        Discover the Café
-      </button>
-
-    </div>
-
-  </div>
-
-  <div class="feature">
-
-    <img class="photo"
-         src="rok-dining.jpg"
-         alt="ROKstone Pool Bar and Grill">
-
-    <div class="feature-body">
-
-      <h2>ROKstone Pool Bar & Grill</h2>
-
-      <p>Relaxed poolside dining.</p>
-
-      <button onclick="show('rokstone')">
-        Discover ROKstone
-      </button>
-
-    </div>
-
-  </div>
+  <p>
+   Please consult the official hotel
+   dining page or reception for
+   current menus and hours.
+  </p>
 
   <div class="actions">
-    <button onclick="reset()">Return Home</button>
+
+   <a class="external"
+      href="https://www.hilton.com/en/hotels/kinocup-rok-hotel-kingston/dining/"
+      target="_blank" rel="noopener">
+    Official Dining Information
+   </a>
+
+   <button class="secondary"
+           onclick="show('dining')">Back to Dining</button>
+
+   <button class="secondary"
+           onclick="resetSession()">Return Home</button>
+
   </div>
+
+ </div>
 
 </section>
 
-<!-- PALATE -->
+<!-- WELLNESS -->
 
-<section id="palate" hidden>
+<section id="wellness" hidden>
 
-  <img class="restaurant-hero"
-       src="rok-palate.avif"
-       alt="Palate restaurant interior">
+ <div class="eyebrow center">
+  Relax · Recharge · Stay Active
+ </div>
 
-  <div class="panel">
+ <h1 class="page-title">Wellness Amenities</h1>
 
-    <div class="eyebrow">Dining at ROK</div>
+ <img class="photo" src="rok-pool.jpg"
+      alt="ROK outdoor swimming pool">
 
-    <h1 class="restaurant-name">Palate</h1>
+ <div class="panel">
 
-    <span class="tag">
-      INTERNATIONAL · CARIBBEAN
-    </span>
+  <h2>Outdoor Swimming Pool</h2>
 
-    <p>
-      Experience Caribbean and international flavours
-      in an elegant dining environment.
-    </p>
+  <p>
+   Unwind and enjoy the Jamaican
+   sunshine in a relaxing poolside setting.
+  </p>
 
-    <p>
-      Discover locally inspired dishes and
-      Jamaican culinary traditions.
-    </p>
+ </div>
 
-    <h3>Opening Hours & Menus</h3>
+ <br>
 
-    <p>
-      Please contact reception for current
-      opening hours, menus and availability.
-    </p>
+ <img class="photo" src="rok-fitness.jpg"
+      alt="ROK fitness centre">
 
-    <div class="actions">
+ <div class="panel">
 
-      <button onclick="show('diningHelp')">
-        Dining Assistance
-      </button>
+  <h2>Fitness Centre</h2>
 
-      <button class="secondary"
-              onclick="show('dining')">
-        Back to Dining
-      </button>
+  <p>
+   Maintain your wellness routine
+   with cardio and strength-training equipment.
+  </p>
 
-      <button class="secondary"
-              onclick="reset()">
-        Return Home
-      </button>
+ </div>
 
-    </div>
-
-  </div>
+ <button class="home-button"
+         onclick="resetSession()">Return to Main Menu</button>
 
 </section>
 
-<!-- ROK CAFE -->
+<!-- AIRPORT INFORMATION -->
 
-<section id="cafe" hidden>
+<section id="airport" hidden>
 
-  <img class="restaurant-hero"
-       src="rok-cafe.avif"
-       alt="ROK Cafe and Market interior">
+ <div class="eyebrow">Travel · Explore · Connect</div>
+ <h1 class="page-title">Your Gateway to Jamaica</h1>
 
-  <div class="panel">
+ <img class="photo" src="rok-hotel.jpg"
+      alt="Kingston waterfront">
 
-    <div class="eyebrow">Relax & Refresh</div>
+ <br>
 
-    <h1 class="restaurant-name">
-      ROK Café & Market
-    </h1>
+ <div class="grid">
 
-    <span class="tag">
-      COFFEE · LIGHT BITES
-    </span>
+  <button class="airport blue"
+          onclick="flight('KIN','Arrivals')">
+   ✈
+   <strong>KIN</strong>
+   <span>ARRIVALS</span>
+   <small>Norman Manley International</small>
+  </button>
 
-    <p>
-      Take a moment to enjoy Jamaican coffee,
-      pastries and light refreshments.
-    </p>
+  <button class="airport gold"
+          onclick="flight('KIN','Departures')">
+   ✈
+   <strong>KIN</strong>
+   <span>DEPARTURES</span>
+   <small>Norman Manley International</small>
+  </button>
 
-    <p>
-      A convenient stop before exploring Kingston
-      or returning to your room.
-    </p>
+  <button class="airport turquoise"
+          onclick="flight('MBJ','Arrivals')">
+   ✈
+   <strong>MBJ</strong>
+   <span>ARRIVALS</span>
+   <small>Sangster International</small>
+  </button>
 
-    <h3>Opening Hours & Menus</h3>
+  <button class="airport blue"
+          onclick="flight('MBJ','Departures')">
+   ✈
+   <strong>MBJ</strong>
+   <span>DEPARTURES</span>
+   <small>Sangster International</small>
+  </button>
 
-    <p>
-      Ask reception for current opening hours
-      and available selections.
-    </p>
+ </div>
 
-    <div class="actions">
+ <div class="actions">
 
-      <button onclick="show('diningHelp')">
-        Dining Assistance
-      </button>
+  <button onclick="show('directions')">
+   Location &amp; Directions
+  </button>
 
-      <button class="secondary"
-              onclick="show('dining')">
-        Back to Dining
-      </button>
+  <button onclick="show('cruise')">
+   Cruise Ship Information
+  </button>
 
-      <button class="secondary"
-              onclick="reset()">
-        Return Home
-      </button>
+  <button class="secondary"
+          onclick="resetSession()">Return Home</button>
 
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ROKSTONE -->
-
-<section id="rokstone" hidden>
-
-  <img class="restaurant-hero"
-       src="rok-dining.jpg"
-       alt="ROKstone restaurant at evening">
-
-  <div class="panel">
-
-    <div class="eyebrow">Poolside Experiences</div>
-
-    <h1 class="restaurant-name">
-      ROKstone Pool Bar & Grill
-    </h1>
-
-    <span class="tag">
-      CASUAL DINING · POOLSIDE
-    </span>
-
-    <p>
-      Unwind with casual dining and refreshments
-      in a relaxed poolside setting.
-    </p>
-
-    <p>
-      Enjoy the atmosphere of Kingston
-      while spending time with friends and family.
-    </p>
-
-    <h3>Opening Hours & Menus</h3>
-
-    <p>
-      Contact reception for current menus,
-      opening hours and entertainment information.
-    </p>
-
-    <div class="actions">
-
-      <button onclick="show('diningHelp')">
-        Dining Assistance
-      </button>
-
-      <button class="secondary"
-              onclick="show('dining')">
-        Back to Dining
-      </button>
-
-      <button class="secondary"
-              onclick="reset()">
-        Return Home
-      </button>
-
-    </div>
-
-  </div>
+ </div>
 
 </section>
 
-<!-- DINING ASSISTANCE -->
+<section id="flightBoard" hidden>
 
-<section id="diningHelp" hidden>
+ <h1 id="flightTitle" class="page-title"></h1>
 
-  <h1>Dining Assistance</h1>
+ <div class="panel">
 
-  <div class="panel">
+  <h2>Flight Information</h2>
 
-    <h2>Let Us Assist You.</h2>
+  <p class="notice">
+   Live flight board integration is pending.
+   No flight times are simulated here.
+  </p>
 
-    <p>
-      Please visit reception for assistance
-      with restaurant reservations, dietary
-      requirements and current menus.
-    </p>
-
-    <p class="notice">
-      Restaurant booking and staff notifications
-      are not connected in this demonstration.
-    </p>
-
-    <div class="actions">
-
-      <button onclick="show('dining')">
-        Back to Dining
-      </button>
-
-      <button class="secondary"
-              onclick="reset()">
-        Return Home
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- HOTEL AMENITIES -->
-
-<section id="information" hidden>
-
-  <div class="eyebrow">Make Yourself at Home</div>
-
-  <h1>Discover Our Hotel</h1>
-
-  <div class="feature">
-
-    <img class="photo"
-         src="rok-pool.jpg"
-         alt="ROK swimming pool">
-
-    <div class="feature-body">
-
-      <h2>Swimming Pool</h2>
-
-      <p>
-        Relax and unwind in our outdoor
-        poolside setting.
-      </p>
-
-    </div>
-
-  </div>
-
-  <div class="feature">
-
-    <img class="photo"
-         src="rok-fitness.jpg"
-         alt="ROK fitness centre">
-
-    <div class="feature-body">
-
-      <h2>Fitness Centre</h2>
-
-      <p>
-        Maintain your wellness routine
-        while travelling.
-      </p>
-
-    </div>
-
-  </div>
-
-  <div class="feature">
-
-    <img class="photo"
-         src="rok-room.jpg"
-         alt="ROK guest accommodation">
-
-    <div class="feature-body">
-
-      <h2>Guest Rooms</h2>
-
-      <p>
-        Discover contemporary accommodation
-        in the heart of Kingston.
-      </p>
-
-    </div>
-
-  </div>
+  <a id="airportLink" class="external"
+     target="_blank" rel="noopener">
+   Official Airport Website
+  </a>
 
   <div class="actions">
 
-    <button onclick="show('dining')">
-      Explore Dining & Drinks
-    </button>
+   <button onclick="show('airport')">
+    Back to Airport Information
+   </button>
 
-    <button class="secondary"
-            onclick="reset()">
-      Return Home
-    </button>
+   <button class="secondary"
+           onclick="resetSession()">Return Home</button>
 
   </div>
+
+ </div>
 
 </section>
 
-<!-- GUEST SERVICES -->
+<section id="cruise" hidden>
 
-<section id="assistance" hidden>
+ <h1 class="page-title">Cruise Ship Information</h1>
 
-  <h1>At Your Service.</h1>
+ <div class="panel">
 
-  <div class="panel">
+  <p>
+   Ask guest services about cruise
+   schedules and local transportation.
+  </p>
 
-    <h2>How May We Assist You?</h2>
+  <p class="notice">
+   Live cruise schedule integration is pending.
+  </p>
 
-    <h3>Front Desk</h3>
-    <p>Room assistance and general enquiries.</p>
+  <button class="home-button"
+          onclick="show('airport')">Return to Travel</button>
 
-    <h3>Guest Wi-Fi</h3>
-    <p>Contact reception for connection information.</p>
+ </div>
 
-    <h3>Housekeeping</h3>
-    <p>Ask reception for additional room amenities.</p>
+</section>
 
-    <h3>Transportation</h3>
-    <p>Ask reception about local transportation.</p>
+<!-- LOCATION -->
 
-    <p class="notice">
-      Live staff notifications are not connected.
-    </p>
+<section id="directions" hidden>
 
-    <div class="actions">
-      <button onclick="reset()">Return Home</button>
-    </div>
+ <h1 class="page-title">Location &amp; Directions</h1>
+
+ <img class="photo" src="rok-hotel.jpg"
+      alt="ROK Hotel Kingston">
+
+ <div class="panel">
+
+  <h2>ROK Hotel Kingston</h2>
+
+  <p>
+   Tapestry Collection by Hilton<br>
+   2–4 King Street<br>
+   Kingston, Jamaica
+  </p>
+
+  <h3>Airport Transportation</h3>
+
+  <p>
+   Contact reception for transportation
+   options and current travel estimates.
+  </p>
+
+  <div class="actions">
+
+   <a class="external"
+      href="https://www.google.com/maps/dir/?api=1&amp;origin=Norman+Manley+International+Airport&amp;destination=ROK+Hotel+Kingston+Jamaica"
+      target="_blank" rel="noopener">
+    View Airport Directions
+   </a>
+
+   <button class="secondary"
+           onclick="resetSession()">Return Home</button>
 
   </div>
+
+ </div>
 
 </section>
 
@@ -1098,80 +1510,173 @@ footer small {
 
 <section id="hotelInfo" hidden>
 
-  <img class="photo"
-       src="rok-hotel.jpg"
-       alt="ROK Hotel Kingston exterior">
+ <img class="photo" src="rok-hotel.jpg"
+      alt="ROK Hotel exterior">
 
-  <h1>Hotel Information</h1>
+ <h1 class="page-title">Hotel Information</h1>
 
-  <div class="panel">
+ <div class="grid">
 
-    <h2>ROK Hotel Kingston</h2>
+  <button class="tile gold"
+          onclick="show('checkin')">
+   Check In
+  </button>
 
-    <p>Tapestry Collection by Hilton</p>
+  <button class="tile blue"
+          onclick="show('checkout')">
+   Check Out
+  </button>
 
-    <h3>Location</h3>
-    <p>Downtown Kingston, Jamaica</p>
+  <button class="tile green"
+          onclick="show('wellness')">
+   Wellness Amenities
+  </button>
 
-    <h3>Arrival & Departure</h3>
-    <p>
-      Please confirm current check-in and
-      check-out times at reception.
-    </p>
+  <button class="tile purple"
+          onclick="show('directions')">
+   Location &amp; Directions
+  </button>
 
-    <h3>Official Hotel Website</h3>
+  <button class="tile orange"
+          onclick="show('events')">
+   Meetings &amp; Events
+  </button>
 
-    <p>
-      For current hotel policies and
-      additional information, visit Hilton's
-      official ROK Hotel Kingston website.
-    </p>
+  <button class="tile turquoise"
+          onclick="show('assistance')">
+   Guest Services
+  </button>
 
-    <div class="actions">
+ </div>
 
-      <button onclick="reset()">
-        Return Home
-      </button>
+ <div class="actions">
 
-    </div>
+  <a class="external"
+     href="https://www.hilton.com/en/hotels/kinocup-rok-hotel-kingston/"
+     target="_blank" rel="noopener">
+   Official Hotel Website
+  </a>
 
-  </div>
+  <button class="secondary"
+          onclick="resetSession()">Return Home</button>
+
+ </div>
 
 </section>
 
-<!-- EXPLORE KINGSTON -->
+<!-- GUEST SERVICES -->
+
+<section id="assistance" hidden>
+
+ <h1 class="page-title">At Your Service</h1>
+
+ <div class="panel">
+
+  <h2>How May We Assist You?</h2>
+
+  <div class="info-row">
+   <h3>Front Desk</h3>
+   <p>Room assistance and general enquiries.</p>
+  </div>
+
+  <div class="info-row">
+   <h3>Housekeeping</h3>
+   <p>Additional towels and room amenities.</p>
+  </div>
+
+  <div class="info-row">
+   <h3>Guest Wi-Fi</h3>
+   <p>Ask reception for connection details.</p>
+  </div>
+
+  <div class="info-row">
+   <h3>Transportation</h3>
+   <p>Ask reception about local travel options.</p>
+  </div>
+
+  <p class="notice">
+   Please visit reception.
+   Live staff notifications are not connected.
+  </p>
+
+  <button class="home-button"
+          onclick="resetSession()">Return Home</button>
+
+ </div>
+
+</section>
+
+<!-- EVENTS -->
+
+<section id="events" hidden>
+
+ <h1 class="page-title">Meetings &amp; Events</h1>
+
+ <img class="photo" src="rok-hotel.jpg"
+      alt="ROK Hotel Kingston">
+
+ <div class="panel">
+
+  <h2>Meet. Celebrate. Connect.</h2>
+
+  <p>
+   Contact the hotel to discuss meetings,
+   conferences and special events.
+  </p>
+
+  <div class="actions">
+
+   <a class="external"
+      href="https://www.hilton.com/en/hotels/kinocup-rok-hotel-kingston/"
+      target="_blank" rel="noopener">
+    Official Hotel Information
+   </a>
+
+   <button class="secondary"
+           onclick="resetSession()">Return Home</button>
+
+  </div>
+
+ </div>
+
+</section>
+
+<!-- EXPLORE -->
 
 <section id="explore" hidden>
 
-  <img class="photo"
-       src="rok-hotel.jpg"
-       alt="Kingston waterfront hotel">
+ <img class="photo" src="rok-hotel.jpg"
+      alt="Kingston waterfront">
 
-  <h1>Explore Kingston</h1>
+ <div class="eyebrow center">More than a destination</div>
+ <h1 class="page-title">Explore Kingston</h1>
 
-  <div class="panel">
+ <div class="panel">
 
-    <div class="eyebrow">
-      Discover Jamaica's Capital
-    </div>
-
-    <h3>Bob Marley Museum</h3>
-    <p>Discover Jamaica's musical heritage.</p>
-
-    <h3>Devon House</h3>
-    <p>Explore Jamaican history and local flavours.</p>
-
-    <h3>National Gallery of Jamaica</h3>
-    <p>Discover Jamaican art and culture.</p>
-
-    <h3>Kingston Waterfront</h3>
-    <p>Experience downtown Kingston.</p>
-
-    <div class="actions">
-      <button onclick="reset()">Return Home</button>
-    </div>
-
+  <div class="info-row">
+   <h3>Bob Marley Museum</h3>
+   <p>Discover Jamaica's musical heritage.</p>
   </div>
+
+  <div class="info-row">
+   <h3>Devon House</h3>
+   <p>Explore Jamaican history and local flavours.</p>
+  </div>
+
+  <div class="info-row">
+   <h3>National Gallery of Jamaica</h3>
+   <p>Experience Jamaican art and culture.</p>
+  </div>
+
+  <div class="info-row">
+   <h3>Kingston Waterfront</h3>
+   <p>Discover downtown Kingston.</p>
+  </div>
+
+  <button class="home-button"
+          onclick="resetSession()">Return Home</button>
+
+ </div>
 
 </section>
 
@@ -1179,13 +1684,18 @@ footer small {
 
 <footer>
 
-  Powered by Halifax Virtual Media Masters &amp; Events Ltd.
+ <div class="motto">
+  Jamaica · One Love
+ </div>
 
-  <small>
-    Independent demonstration · Not affiliated with Hilton
-    <br>
-    Use fictional guest information only
-  </small>
+ <small>
+  Powered by Halifax Virtual Media Masters &amp; Events Ltd.
+ </small>
+
+ <small>
+  Independent demo · Not affiliated with Hilton
+  · Fictional guest data only
+ </small>
 
 </footer>
 
@@ -1193,398 +1703,413 @@ footer small {
 
 <script>
 
-const $ = id => document.getElementById(id);
+const $=id=>document.getElementById(id);
 
 let timer;
-let drawing = false;
-let signed = false;
-let currentStep = 1;
+let drawing=false;
+let signed=false;
+let currentStep=1;
+let verified=false;
 
-const canvas = $('sig');
-const ctx = canvas.getContext('2d');
+const icons={
 
-ctx.strokeStyle = '#123c43';
-ctx.lineWidth = 4;
-ctx.lineCap = 'round';
-ctx.lineJoin = 'round';
+ checkin:
+ '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 15l3 3 5-6"/>',
 
-/* TOUCHSCREEN MENU ICONS */
+ checkout:
+ '<rect x="4" y="7" width="16" height="14" rx="2"/><path d="M9 7V3h6v4M8 10v8M16 10v8"/>',
 
-const icons = {
+ dining:
+ '<path d="M4 3v7a3 3 0 0 0 6 0V3M7 3v19M17 3c-4 4-4 9 0 10h2M19 3v19"/>',
 
-  checkin:
-    '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 15l3 3 5-6"/>',
+ wellness:
+ '<path d="M12 21C2 15 3 7 7 7c3 0 5 3 5 3s2-3 5-3c4 0 5 8-5 14z"/>',
 
-  registration:
-    '<rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4V2h6v2M9 10h6M9 14h6M9 18h4"/>',
+ airport:
+ '<path d="M2 16l9-4V3l2-1 2 1v9l7 4v2l-7-2v4l2 2H9l2-2v-4l-9 2z"/>',
 
-  checkout:
-    '<rect x="4" y="7" width="16" height="14" rx="2"/><path d="M9 7V3h6v4M8 10v8M16 10v8"/>',
+ hotelInfo:
+ '<path d="M3 21h18M5 21V4h14v17M9 8h1M14 8h1M9 12h1M14 12h1M10 21v-5h4v5"/>',
 
-  dining:
-    '<path d="M4 3v7a3 3 0 0 0 6 0V3M7 3v19M17 3c-4 4-4 9 0 10h2M19 3v19"/>',
+ assistance:
+ '<path d="M3 17h18M5 17v-2a7 7 0 0 1 14 0v2M12 5V3M10 3h4M2 21h20"/>',
 
-  information:
-    '<path d="M3 21h18M5 21V4h14v17M9 8h1M14 8h1M9 12h1M14 12h1M10 21v-5h4v5"/>',
-
-  assistance:
-    '<path d="M3 17h18M5 17v-2a7 7 0 0 1 14 0v2M12 5V3M10 3h4M2 21h20"/>',
-
-  explore:
-    '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/>',
-
-  hotelInfo:
-    '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/>'
+ explore:
+ '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/>'
 
 };
 
-/* BUILD MAIN MENU */
+const tiles=[
 
-const tiles = [
+ ['Self Check-In','Begin your arrival','checkin','gold'],
 
-  ['Check In',
-   'Find your reservation','checkin'],
+ ['Check-Out','Prepare for departure','checkout','blue'],
 
-  ['Registration',
-   'Complete your details','registration'],
+ ['Dining & Drinks','Taste Kingston','dining','orange'],
 
-  ['Check Out',
-   'Prepare for departure','checkout'],
+ ['Wellness','Relax and recharge','wellness','green'],
 
-  ['Dining & Drinks',
-   'Discover our restaurants','dining'],
+ ['Airport Information','KIN and MBJ flights','airport','turquoise'],
 
-  ['Hotel Amenities',
-   'Relax and unwind','information'],
+ ['Hotel Information','Discover your stay','hotelInfo','blue'],
 
-  ['Guest Services',
-   'Here to assist','assistance'],
+ ['Guest Services','Here to assist','assistance','purple'],
 
-  ['Explore Kingston',
-   'Discover Jamaica','explore'],
-
-  ['Hotel Information',
-   'About your stay','hotelInfo']
+ ['Explore Kingston','Discover Jamaica','explore','gold']
 
 ];
 
-tiles.forEach(([title,sub,id]) => {
+tiles.forEach(([title,sub,id,color])=>{
 
-  const b = document.createElement('button');
+ const b=document.createElement('button');
 
-  b.className = 'tile';
+ b.className='tile '+color;
 
-  b.innerHTML = `
-    <svg viewBox="0 0 24 24"
-         aria-hidden="true">
-      ${icons[id]}
-    </svg>
-    <div>
-      <b>${title}</b>
-      <small>${sub}</small>
-    </div>
-  `;
+ b.innerHTML=`
+ <div class="circle">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+   ${icons[id]}
+  </svg>
+ </div>
+ <div>
+  <b>${title}</b>
+  <small>${sub}</small>
+ </div>`;
 
-  b.onclick = () => {
+ b.onclick=()=>show(id);
 
-    if(id === 'registration') {
-
-      register(false);
-
-    } else {
-
-      show(id);
-
-    }
-
-  };
-
-  $('tiles').append(b);
+ $('tiles').append(b);
 
 });
 
-/* NAVIGATION */
+function show(id){
 
-function show(id) {
+ document.querySelectorAll('main section')
+ .forEach(s=>s.hidden=s.id!==id);
 
-  document.querySelectorAll('main section')
-    .forEach(s => {
-      s.hidden = s.id !== id;
-    });
+ $('content').scrollTop=0;
 
-  $('content').scrollTop = 0;
+ idle();
 
-  idle();
 }
 
-/* SESSION RESET */
+function idle(){
 
-function idle() {
+ clearTimeout(timer);
 
-  clearTimeout(timer);
+ timer=setTimeout(resetSession,120000);
 
-  timer = setTimeout(reset,120000);
 }
 
-/* REGISTRATION STEPS */
+function step(n){
 
-function step(n) {
+ currentStep=n;
 
-  currentStep = n;
+ for(let i=1;i<=3;i++){
+  $('step'+i).hidden=i!==n;
+ }
 
-  for(let i=1;i<=3;i++) {
+ document.querySelectorAll('.progress i')
+ .forEach((el,i)=>{
+  el.classList.toggle('active',i<n);
+ });
 
-    $('step'+i).hidden = i !== n;
+ $('content').scrollTop=0;
 
-  }
+ idle();
 
-  document.querySelectorAll('.progress i')
-    .forEach((el,i) => {
-
-      el.classList.toggle('active',i<n);
-
-    });
-
-  $('content').scrollTop = 0;
-
-  idle();
 }
 
-function clearSig() {
+const canvas=$('sig');
+const ctx=canvas.getContext('2d');
 
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.lineWidth=4;
+ctx.lineCap='round';
+ctx.lineJoin='round';
+ctx.strokeStyle='#052b4d';
 
-  drawing = false;
-  signed = false;
+function clearSig(){
 
-  $('sigError').textContent = '';
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ signed=false;
+ drawing=false;
+
+ $('sigError').textContent='';
+
 }
 
-function clearData() {
+function clearData(){
 
-  document.querySelectorAll('form')
-    .forEach(f => f.reset());
+ document.querySelectorAll('form')
+ .forEach(f=>f.reset());
 
-  $('lookupError').textContent = '';
+ $('lookupError').textContent='';
 
-  clearSig();
+ clearSig();
+
+ step(1);
+
+ verified=false;
+
+}
+
+function resetSession(){
+
+ clearData();
+
+ show('home');
+
+}
+
+$('lookup').onsubmit=e=>{
+
+ e.preventDefault();
+
+ const ref=$('ref').value.trim().toUpperCase();
+
+ const name=$('surname').value.trim().toLowerCase();
+
+ if(ref==='DEMO1001' && name==='smith'){
+
+  verified=true;
+
+  e.target.reset();
+
+  $('lookupError').textContent='';
+
+  show('reservation');
+
+ }else{
+
+  verified=false;
+
+  $('lookupError').textContent=
+   'Try the sample reservation DEMO1001 and Smith.';
+
+ }
+
+};
+
+function simulateScan(){
+
+ if(!verified){
+  show('checkin');
+  return;
+ }
+
+ show('idVerified');
+
+}
+
+function startRegistration(){
+
+ if(!verified){
+  show('checkin');
+  return;
+ }
+
+ $('guest').reset();
+
+ clearSig();
+
+ $('guestName').value='Alex Smith';
+ $('count').value='2';
+
+ step(1);
+
+ show('registration');
+
+}
+
+function nextDetails(){
+
+ if(!$('guestName').value.trim()){
+
+  $('guestName').setCustomValidity(
+   'Please enter a fictional guest name.'
+  );
+
+  $('guestName').reportValidity();
+
+  $('guestName').setCustomValidity('');
+
+  return;
+
+ }
+
+ if($('country').reportValidity()){
+  step(2);
+ }
+
+}
+
+function nextAgreement(){
+
+ if($('agree').reportValidity()){
+  step(3);
+ }
+
+}
+
+function pos(e){
+
+ const r=canvas.getBoundingClientRect();
+
+ return [
+  (e.clientX-r.left)*canvas.width/r.width,
+  (e.clientY-r.top)*canvas.height/r.height
+ ];
+
+}
+
+canvas.onpointerdown=e=>{
+
+ drawing=true;
+
+ canvas.setPointerCapture(e.pointerId);
+
+ ctx.beginPath();
+
+ ctx.moveTo(...pos(e));
+
+};
+
+canvas.onpointermove=e=>{
+
+ if(!drawing)return;
+
+ ctx.lineTo(...pos(e));
+
+ ctx.stroke();
+
+ signed=true;
+
+};
+
+canvas.onpointerup=
+canvas.onpointercancel=
+canvas.onlostpointercapture=()=>{
+
+ drawing=false;
+
+};
+
+$('guest').onsubmit=e=>{
+
+ e.preventDefault();
+
+ if(!verified){
+  resetSession();
+  return;
+ }
+
+ if(currentStep===1){
+  nextDetails();
+  return;
+ }
+
+ if(currentStep===2){
+  nextAgreement();
+  return;
+ }
+
+ if(!$('guestName').value.trim()
+    || !$('country').value){
 
   step(1);
-}
+  return;
 
-function reset() {
+ }
 
-  clearData();
+ if(!$('agree').checked){
 
-  show('home');
-}
+  step(2);
+  return;
 
-function register(prefill) {
+ }
 
-  clearData();
+ if(!signed){
 
-  if(prefill) {
+  $('sigError').textContent=
+   'Please draw a fictional signature.';
 
-    $('guestName').value = 'Alex Smith';
+  return;
 
-    $('count').value = '2';
+ }
 
-  }
+ clearData();
 
-  show('registration');
-}
-
-function nextDetails() {
-
-  if(!$('guestName').value.trim()) {
-
-    $('guestName').setCustomValidity(
-      'Enter a fictional guest name.'
-    );
-
-    $('guestName').reportValidity();
-
-    $('guestName').setCustomValidity('');
-
-    return;
-  }
-
-  if($('country').reportValidity()) {
-
-    step(2);
-
-  }
-
-}
-
-function nextAgreement() {
-
-  if($('agree').reportValidity()) {
-
-    step(3);
-
-  }
-
-}
-
-/* RESERVATION LOOKUP */
-
-$('lookup').onsubmit = e => {
-
-  e.preventDefault();
-
-  const reference =
-    $('ref').value.trim().toUpperCase();
-
-  const surname =
-    $('surname').value.trim().toLowerCase();
-
-  if(reference === 'DEMO1001'
-     && surname === 'smith') {
-
-    e.target.reset();
-
-    $('lookupError').textContent = '';
-
-    show('reservation');
-
-  } else {
-
-    $('lookupError').textContent =
-      'Reservation not found. Try DEMO1001 and Smith.';
-
-  }
+ show('roomAccess');
 
 };
 
-/* DIGITAL SIGNATURE */
+$('out').onsubmit=e=>{
 
-function pos(e) {
+ e.preventDefault();
 
-  const r = canvas.getBoundingClientRect();
+ clearData();
 
-  return [
+ show('outDone');
 
-    (e.clientX-r.left)*canvas.width/r.width,
+};
 
-    (e.clientY-r.top)*canvas.height/r.height
+const restaurants={
 
-  ];
+ palate:{
+  title:'Palate Restaurant',
+  image:'rok-palate.avif',
+  text:'Discover international and Caribbean flavours in a contemporary dining environment.'
+ },
+
+ cafe:{
+  title:'ROK Café & Market',
+  image:'rok-cafe.avif',
+  text:'Enjoy coffee, pastries, light refreshments and convenient bites during your Kingston stay.'
+ },
+
+ rokstone:{
+  title:'ROKstone Pool Bar & Grill',
+  image:'rok-dining.jpg',
+  text:'Unwind in a relaxed poolside atmosphere with casual dining and refreshments.'
+ }
+
+};
+
+function restaurant(id){
+
+ const r=restaurants[id];
+
+ $('restaurantTitle').textContent=r.title;
+
+ $('restaurantPhoto').src=r.image;
+
+ $('restaurantPhoto').alt=r.title;
+
+ $('restaurantText').textContent=r.text;
+
+ show('restaurantDetail');
 
 }
 
-canvas.onpointerdown = e => {
+function flight(code,type){
 
-  drawing = true;
+ $('flightTitle').textContent=code+' '+type;
 
-  canvas.setPointerCapture(e.pointerId);
+ $('airportLink').href=code==='KIN'
+  ?'https://www.nmia.aero/'
+  :'https://www.mbjairport.com/';
 
-  ctx.beginPath();
+ show('flightBoard');
 
-  ctx.moveTo(...pos(e));
-
-};
-
-canvas.onpointermove = e => {
-
-  if(drawing) {
-
-    ctx.lineTo(...pos(e));
-
-    ctx.stroke();
-
-    signed = true;
-
-  }
-
-};
-
-canvas.onpointerup =
-canvas.onpointercancel =
-canvas.onlostpointercapture = () => {
-
-  drawing = false;
-
-};
-
-/* COMPLETE REGISTRATION */
-
-$('guest').onsubmit = e => {
-
-  e.preventDefault();
-
-  if(currentStep === 1) {
-
-    nextDetails();
-
-    return;
-
-  }
-
-  if(currentStep === 2) {
-
-    nextAgreement();
-
-    return;
-
-  }
-
-  if(!$('guestName').value.trim()
-     || !$('country').value) {
-
-    step(1);
-
-    return;
-
-  }
-
-  if(!$('agree').checked) {
-
-    step(2);
-
-    return;
-
-  }
-
-  if(!signed) {
-
-    $('sigError').textContent =
-      'Please draw a sample signature.';
-
-    return;
-
-  }
-
-  clearData();
-
-  show('success');
-
-};
-
-/* SAMPLE CHECK-OUT */
-
-$('out').onsubmit = e => {
-
-  e.preventDefault();
-
-  clearData();
-
-  show('outDone');
-
-};
-
-/* ACTIVITY MONITOR */
+}
 
 ['pointerdown','pointermove','keydown','input']
-  .forEach(e => {
+.forEach(event=>document.addEventListener(event,idle));
 
-    document.addEventListener(e,idle);
+window.addEventListener('pageshow',resetSession);
 
-  });
-
-window.addEventListener('pageshow',reset);
-
-reset();
+resetSession();
 
 </script>
 
