@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VMM Smart Check-In</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#082f36,#146b70);
+  color: white;
+  min-height: 100vh;
+}
+header {
+  text-align: center;
+  padding: 22px;
+  letter-spacing: 3px;
+  color: #f2d29b;
+  font-weight: bold;
+}
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px 30px 80px;
+}
+h1 {
+  font-size: clamp(30px,5vw,54px);
+  text-align: center;
+  margin: 12px 0;
+}
+h2 { color: #f2d29b; }
+.subtitle {
+  text-align: center;
+  font-size: 20px;
+  color: #d5e9e7;
+  margin-bottom: 30px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 18px;
+}
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  padding: 18px;
+  font-size: 20px;
+  font-weight: bold;
+  background: #f2d29b;
+  color: #123b40;
+  touch-action: manipulation;
+}
+button:active { transform: scale(.98); }
+.tile {
+  min-height: 140px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  color: white;
+}
+.tile span {
+  display: block;
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+.panel {
+  background: rgba(255,255,255,.1);
+  padding: 25px;
+  border-radius: 16px;
+}
+label {
+  display: block;
+  margin: 16px 0 8px;
+  font-size: 18px;
+}
+input, select {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 20px;
+  background: white;
+  color: #123b40;
+}
+input[type=checkbox] {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+.secondary {
+  background: transparent;
+  border: 1px solid #a9cecc;
+  color: white;
+}
+canvas {
+  width: 100%;
+  height: 130px;
+  background: white;
+  border-radius: 8px;
+  touch-action: none;
+}
+footer {
+  text-align: center;
+  padding: 18px;
+  color: #c2dddb;
+  font-size: 13px;
+}
+.notice {
+  text-align: center;
+  font-size: 14px;
+  color: #f2d29b;
+}
+.error { color: #ffceba; }
+[hidden] { display: none !important; }
+@media(max-width:500px) {
+  main { padding: 15px; }
+  .tile { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+<header>VMM SMART CHECK-IN</header>
+
+<main>
+
+<section id="home">
+  <h1>Welcome to Paradise</h1>
+  <p class="subtitle">
+    Your Jamaican vacation starts here.
+  </p>
+
+  <div class="grid">
+    <button class="tile" onclick="show('checkin')">
+      <span>🛎️</span>Guest Check-In
+    </button>
+
+    <button class="tile" onclick="show('registration')">
+      <span>📋</span>Guest Registration
+    </button>
+
+    <button class="tile" onclick="show('checkout')">
+      <span>🧳</span>Guest Check-Out
+    </button>
+
+    <button class="tile" onclick="show('information')">
+      <span>🏝️</span>Hotel Information
+    </button>
+
+    <button class="tile" onclick="show('assistance')">
+      <span>🔔</span>Request Assistance
+    </button>
+
+    <button class="tile" onclick="show('explore')">
+      <span>🌴</span>Explore Jamaica
+    </button>
+  </div>
+
+  <p class="subtitle">Touch an option to begin</p>
+</section>
+
+<section id="checkin" hidden>
+  <h1>Guest Check-In</h1>
+
+  <div class="panel">
+    <p>Enter your reservation details.</p>
+    <p class="notice">
+      Demo reservation: DEMO1001<br>
+      Last name: Smith
+    </p>
+
+    <form id="lookupForm">
+      <label for="reference">Reservation Number</label>
+      <input id="reference" required
+             autocomplete="off">
+
+      <label for="surname">Last Name</label>
+      <input id="surname" required
+             autocomplete="off">
+
+      <p id="lookupError" class="error"></p>
+
+      <div class="actions">
+        <button type="submit">Find Reservation</button>
+        <button type="button" class="secondary"
+                onclick="resetSession()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section id="reservation" hidden>
+  <h1>Reservation Found</h1>
+  <div class="panel">
+    <h2>Welcome, Alex Smith</h2>
+    <p>Reservation: DEMO1001</p>
+    <p>Accommodation: Deluxe Guest Room</p>
+    <p>Guests: 2 Adults</p>
+    <p>Stay: 7 Nights</p>
+    <p class="notice">Fictional demonstration reservation</p>
+
+    <div class="actions">
+      <button onclick="continueRegistration()">
+        Continue Registration
+      </button>
+      <button class="secondary" onclick="resetSession()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="registration" hidden>
+  <h1>Guest Registration</h1>
+
+  <div class="panel">
+    <form id="guestForm">
+
+      <label for="guestName">Full Name</label>
+      <input id="guestName" required autocomplete="off">
+
+      <label for="country">Country of Residence</label>
+      <select id="country" required>
+        <option value="">Select Country</option>
+        <option>Canada</option>
+        <option>United States</option>
+        <option>United Kingdom</option>
+        <option>Jamaica</option>
+        <option>Other</option>
+      </select>
+
+      <label for="guestCount">Number of Guests</label>
+      <select id="guestCount">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5 or more</option>
+      </select>
+
+      <h2>Registration Agreement</h2>
+      <p>
+        I confirm that the information entered is correct.
+        I understand that final room assignment must be
+        confirmed by the front desk.
+      </p>
+
+      <label>
+        <input id="agreement" type="checkbox" required>
+        I accept the sample registration agreement.
+      </label>
+
+      <label>Digital Signature</label>
+      <canvas id="signature" width="900" height="200">
+      </canvas>
+
+      <div class="actions">
+        <button type="button" class="secondary"
+                onclick="clearSignature()">
+          Clear Signature
+        </button>
+      </div>
+
+      <p id="signatureError" class="error"></p>
+
+      <div class="actions">
+        <button type="submit">
+          Complete Registration
+        </button>
+        <button type="button" class="secondary"
+                onclick="resetSession()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section id="success" hidden>
+  <h1>✓ Registration Complete</h1>
+  <div class="panel" style="text-align:center">
+    <h2>Welcome to Jamaica!</h2>
+    <p>Your demonstration registration is complete.</p>
+    <p>Please visit reception for room confirmation.</p>
+    <p>Thank you and enjoy your stay.</p>
+    <button onclick="resetSession()">
+      Return to Welcome Screen
+    </button>
+  </div>
+</section>
+
+<section id="checkout" hidden>
+  <h1>Guest Check-Out</h1>
+  <div class="panel">
+    <form id="checkoutForm">
+      <label for="room">Room Number</label>
+      <input id="room" required autocomplete="off">
+
+      <label for="checkoutName">Last Name</label>
+      <input id="checkoutName" required autocomplete="off">
+
+      <div class="actions">
+        <button type="submit">Request Check-Out</button>
+        <button type="button" class="secondary"
+                onclick="resetSession()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section id="checkoutSuccess" hidden>
+  <h1>Thank You for Staying</h1>
+  <div class="panel">
+    <p>Your demonstration check-out is complete.</p>
+    <p>Please visit reception to settle your final account.</p>
+    <p>No actual check-out request has been transmitted.</p>
+    <button onclick="resetSession()">Return Home</button>
+  </div>
+</section>
+
+<section id="information" hidden>
+  <h1>Hotel Information</h1>
+  <div class="panel">
+    <h2>🍽️ Restaurant</h2>
+    <p>Breakfast: 7:00 AM – 10:00 AM</p>
+    <p>Lunch: 12:00 PM – 3:00 PM</p>
+    <p>Dinner: 6:00 PM – 10:00 PM</p>
+
+    <h2>🏊 Swimming Pool</h2>
+    <p>Open daily: 8:00 AM – 8:00 PM</p>
+
+    <h2>📶 Complimentary Wi-Fi</h2>
+    <p>Contact reception for access information.</p>
+
+    <h2>🧳 Check-Out</h2>
+    <p>11:00 AM</p>
+
+    <p class="notice">Sample hotel information only.</p>
+    <button onclick="resetSession()">Return Home</button>
+  </div>
+</section>
+
+<section id="assistance" hidden>
+  <h1>Guest Assistance</h1>
+  <div class="panel">
+    <h2>We Are Here to Help</h2>
+    <p>Please visit the front desk for assistance.</p>
+    <p class="notice">
+      Staff notification is not connected in this demo.
+    </p>
+    <button onclick="resetSession()">Return Home</button>
+  </div>
+</section>
+
+<section id="explore" hidden>
+  <h1>Explore Jamaica</h1>
+  <div class="panel">
+    <h2>Discover Your Next Adventure</h2>
+    <p>🌊 Beaches and Water Sports</p>
+    <p>🌿 Waterfalls and Nature Tours</p>
+    <p>⛵ Sunset Cruises</p>
+    <p>🍴 Jamaican Dining Experiences</p>
+    <p>🎵 Music and Culture</p>
+
+    <p>Ask reception about local excursions.</p>
+
+    <button onclick="resetSession()">Return Home</button>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Powered by Halifax Virtual Media Masters & Events Ltd.
+  <br><br>
+  <span class="notice">
+    DEMONSTRATION ONLY — Use fictional guest information.
+  </span>
+</footer>
+
+<script>
+let idleTimer;
+let drawing = false;
+let signed = false;
+
+const canvas = document.getElementById('signature');
+const ctx = canvas.getContext('2d');
+
+ctx.lineWidth = 3;
+ctx.lineCap = 'round';
+ctx.strokeStyle = '#123b40';
+
+function show(id) {
+  document.querySelectorAll('main section').forEach(s => {
+    s.hidden = true;
+  });
+
+  document.getElementById(id).hidden = false;
+  window.scrollTo(0, 0);
+  restartTimer();
+}
+
+function clearSignature() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  signed = false;
+  drawing = false;
+  document.getElementById('signatureError').textContent = '';
+}
+
+function resetSession() {
+  document.querySelectorAll('form').forEach(f => f.reset());
+  document.getElementById('lookupError').textContent = '';
+  clearSignature();
+  show('home');
+}
+
+function restartTimer() {
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(resetSession, 120000);
+}
+
+['pointerdown','pointermove','keydown','input'].forEach(event => {
+  document.addEventListener(event, restartTimer);
+});
+
+document.getElementById('lookupForm')
+.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const ref = document.getElementById('reference')
+    .value.trim().toUpperCase();
+
+  const surname = document.getElementById('surname')
+    .value.trim().toLowerCase();
+
+  if(ref === 'DEMO1001' && surname === 'smith') {
+    document.getElementById('lookupError').textContent = '';
+    show('reservation');
+  } else {
+    document.getElementById('lookupError').textContent =
+      'Reservation not found. Try DEMO1001 and Smith.';
+  }
+});
+
+function continueRegistration() {
+  document.getElementById('guestName').value = 'Alex Smith';
+  document.getElementById('guestCount').value = '2';
+  show('registration');
+}
+
+function position(e) {
+  const rect = canvas.getBoundingClientRect();
+
+  return {
+    x: (e.clientX - rect.left) * canvas.width / rect.width,
+    y: (e.clientY - rect.top) * canvas.height / rect.height
+  };
+}
+
+canvas.addEventListener('pointerdown', e => {
+  drawing = true;
+  canvas.setPointerCapture(e.pointerId);
+  const p = position(e);
+  ctx.beginPath();
+  ctx.moveTo(p.x, p.y);
+});
+
+canvas.addEventListener('pointermove', e => {
+  if(!drawing) return;
+  const p = position(e);
+  ctx.lineTo(p.x, p.y);
+  ctx.stroke();
+  signed = true;
+});
+
+canvas.addEventListener('pointerup', () => drawing = false);
+canvas.addEventListener('pointercancel', () => drawing = false);
+
+document.getElementById('guestForm')
+.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  if(!signed) {
+    document.getElementById('signatureError').textContent =
+      'Please provide your digital signature.';
+    return;
+  }
+
+  document.querySelectorAll('form').forEach(f => f.reset());
+  clearSignature();
+  show('success');
+});
+
+document.getElementById('checkoutForm')
+.addEventListener('submit', function(e) {
+  e.preventDefault();
+  this.reset();
+  show('checkoutSuccess');
+});
+
+window.addEventListener('pageshow', resetSession);
+
+restartTimer();
+</script>
+
+</body>
+</html>
